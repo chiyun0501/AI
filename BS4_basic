@@ -1,0 +1,24 @@
+from bs4 import BeautifulSoup
+
+html_doc = """
+<html><head><title>1014python</title></head>
+<body><h2>賴紀云</h2>
+<p>ADT107128</p>
+<a id="link1" href="/my_link1">Link 1</a>
+<a id="link2" href="/my_link2">Link 2</a>
+<p>Hello, <b class="boldtext">Bold Text</b></p>
+</body></html>
+"""
+
+soup = BeautifulSoup(html_doc, 'html.parser')
+print(soup.prettify())
+
+title_tag = soup.title
+print(title_tag)
+
+a_tags = soup.find_all('a')
+for tag in a_tags:
+    print(tag.string)
+    
+for tag in a_tags:
+    print(tag.get('href'))
