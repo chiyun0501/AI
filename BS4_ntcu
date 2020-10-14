@@ -1,0 +1,17 @@
+import requests
+from bs4 import BeautifulSoup
+
+
+url = 'https://dct.ntcu.edu.tw/news.php'
+r = requests.get(url)
+
+
+if r.status_code == requests.codes.ok:
+  # 以 BeautifulSoup 解析 HTML 程式碼
+  soup = BeautifulSoup(r.text, 'html.parser')
+
+  a_tags = soup.find_all('a')
+  for tag in a_tags:
+    # 輸出超連結的文字
+    print('網址：'+str(tag.string)+' -> '+tag.get('href'))    
+    #print(tag.get('href'))
