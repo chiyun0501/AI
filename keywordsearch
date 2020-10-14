@@ -1,0 +1,16 @@
+import requests
+url = 'https://dct.ntcu.edu.tw/'
+html = requests.get(url)
+html.encoding="utf-8"
+print(html.text)
+
+htmllist=html.text.splitlines()
+for row in htmllist:
+    print(row)
+    
+n=0
+keyword="數位"
+for row in htmllist:
+    if keyword in row:n+=1
+    
+print("找到{}個".format(n))
